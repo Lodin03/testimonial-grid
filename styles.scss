@@ -1,0 +1,232 @@
+$purple300: hsl(264, 82%, 80%);
+$purple500: hsl(263, 55%, 52%);
+$white: hsl(0, 0%, 100%);
+$grey100: hsl(214, 17%, 92%);
+$grey200: hsl(0, 0%, 81%);
+$grey400: hsl(224, 10%, 45%);
+$grey500: hsl(217, 19%, 35%);
+$dark-blue: hsl(219, 29%, 14%);
+$black: hsl(0, 0%, 7%);
+$font-light: 400;
+$font-medium: 500;
+
+body {
+  font-family: 'Barlow Semi Condensed', sans-serif;  
+  background-color: $grey100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: clamp(0.5rem, 2vw, 2rem);
+}
+
+.grid-container {
+  width: 70vw;
+  height: 70vh;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  // Map to tell grid design and sizes of boxes should be
+  grid-template-areas: 
+  "daniel daniel jonathan kira" // Row 1
+  "jeanette patrick patrick kira"; // Row 2
+  gap: clamp(0.5rem, 1.5vw, 2rem);
+  padding: clamp(0.5rem, 1.5vw, 2rem);
+  box-sizing: border-box;
+}
+
+.grid-box {
+  position: relative;
+  padding: clamp(0.75rem, 1.5vw, 2rem);
+  border-radius: clamp(0.25rem, 0.5vw, 1rem);
+  box-sizing: border-box;
+}
+
+.quoation-mark {
+  position: absolute;
+  top: 0vw;
+  right: 4.75vw;
+  width: 6vw;
+  height: auto;
+  z-index: 1;
+  opacity: 0.25;
+  pointer-events: none;
+  filter: drop-shadow(0 0 0 $grey100) brightness(100) saturate(100%);
+}
+
+.box-header {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.25rem, 0.75vw, 1.5rem);
+  margin-block-end: clamp(0.5rem, 1.25rem, 2rem);
+    
+  .box-image {
+    width: clamp(32px, 2vw, 48px);
+    height: clamp(32px, 2vw, 48px);
+    border: 1px solid $white;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  .box-user-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: clamp(0.25rem, 0.5vw, 1rem);
+
+    .user-name {
+      font-size: clamp(0.85rem, 0.9rem, 1.1rem);
+      margin: 0;
+      font-weight: $font-medium;
+    }
+
+    .user-status {
+      color: $grey200;  
+      font-size: clamp(0.7rem, 0.8rem, 1rem);
+      margin: 0.2em 0 0 0;
+      font-weight: $font-light;
+    }
+  }
+}
+
+.box-title {
+  position: relative;
+  z-index: 2;
+  font-size: clamp(1rem, 1.05rem, 1.25rem);
+  margin-block-end: clamp(0.5rem, 1.25rem, 2rem);
+}
+
+.box-text {
+  font-size: clamp(0.7rem, 0.75rem, 1rem);
+  color: $grey200;
+}
+
+.box-daniel {
+  grid-area: daniel;
+  background-color: $purple500;
+  color: $white;
+
+  .box-image {
+    border: 1px solid $purple300;
+  }
+}
+
+.box-jonathan {
+  grid-area: jonathan;
+  background-color: $grey500;
+  color: $white;
+
+  .box-text {
+    font-size: 0.85rem;
+    
+  }
+}
+
+.box-kira {
+  grid-area: kira;
+  color: $black;
+  box-shadow: 0 0.5vw 1vw rgba(0, 0, 0, 0.3);
+  
+  .box-user-info {
+    .user-status {
+      color: $grey400;
+    }
+  }
+
+  .box-text {
+    font-size: 0.875rem;
+    color: $grey400;
+  }
+
+}
+
+.box-jeanette {
+  grid-area: jeanette;
+  box-shadow: 0 0.5vw 1vw rgba(0, 0, 0, 0.3); 
+
+  .box-user-info {
+    .user-status {
+      color: $grey400;
+    }
+  }
+
+  .box-title {
+    font-size: 1.1rem;
+  }
+
+  .box-text {
+    color: $grey400;
+    line-height: 1.6;
+    font-size: 0.8rem;
+  }
+
+}
+
+.box-patrick {
+  grid-area: patrick;
+  background-color: $dark-blue;
+
+  .box-image {
+    border: 1px solid $purple500;
+  }
+
+  .box-user-info {
+    .user-name {
+      color: $white;
+    }
+  }
+
+  .box-title {
+    color: $white;
+  }
+
+  .box-text {
+    line-height: 1.6;
+  }
+}
+
+@media (max-width: 900px) {
+  .grid-container {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas:
+      "daniel jonathan"
+      "kira jeanette"
+      "patrick patrick";
+    height: auto;
+    width: 98vw;
+  }
+}
+
+@media (max-width: 600px) {
+  .grid-container {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "daniel"
+      "jonathan"
+      "kira"
+      "jeanette"
+      "patrick";
+    gap: clamp(0.25rem, 2vw, 1rem);
+    width: 100vw;
+    height: auto;
+    padding: clamp(0.25rem, 2vw, 1rem);
+  }
+  .grid-box {
+    min-width: 0;
+    min-height: 0;
+    padding: clamp(0.5rem, 2vw, 1.5rem);
+  }
+  .box-header .box-image {
+    width: clamp(28px, 6vw, 40px);
+    height: clamp(28px, 6vw, 40px);
+  }
+  .box-title {
+    font-size: clamp(0.95rem, 1.05rem, 1.15rem);
+  }
+  .box-text {
+    font-size: clamp(0.7rem, 0.8rem, 0.95rem);
+  }
+}
+
