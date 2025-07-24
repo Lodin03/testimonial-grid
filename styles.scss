@@ -128,6 +128,8 @@ body {
   grid-area: kira;
   color: $black;
   box-shadow: 0 0.5vw 1vw rgba(0, 0, 0, 0.3);
+  overflow-y: auto;  /* allows vertical scroll */
+  max-height: 100%; 
   
   .box-user-info {
     .user-status {
@@ -139,7 +141,6 @@ body {
     font-size: 0.875rem;
     color: $grey400;
   }
-
 }
 
 .box-jeanette {
